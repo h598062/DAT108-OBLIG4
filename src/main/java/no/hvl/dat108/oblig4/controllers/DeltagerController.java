@@ -5,7 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PaameldingController {
+public class DeltagerController {
+
+	@GetMapping("deltagerliste")
+	public String getDeltagerListe(Model model) {
+		return "deltagerliste";
+	}
+
 	@GetMapping("/")
 	public String rootPaamelding(Model model) {
 		return "paamelding";
@@ -19,5 +25,10 @@ public class PaameldingController {
 	@GetMapping("paameldt")
 	public String getPaameldt(Model model) {
 		return "paameldt";
+	}
+
+	@GetMapping("innlogging")
+	public String getInnlogging(Model model) {
+		return "innlogging";
 	}
 }
