@@ -10,4 +10,14 @@ public class PaameldingController {
 	public String rootPaamelding(Model model) {
 		return "paamelding";
 	}
+
+	@GetMapping("paamelding")
+	public String getPaamelding(Model model) {
+		return "paamelding";
+	}
+
+	@GetMapping("paameldt")
+	public String getPaameldt(Model model) {
+		return "paameldt";
+	}
 }
