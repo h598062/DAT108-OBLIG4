@@ -6,22 +6,17 @@ import jakarta.persistence.*;
 @Table(name = "deltager", schema = "dat108_oblig4")
 public class Deltager {
 	@Id
-	@Column(name = "mobil")
+	@Column(name = "mobil", length = 8)
 	private String mobil;
-	@Basic
-	@Column(name = "hash")
+	@Column(name = "hash", length = 64)
 	private String hash;
-	@Basic
-	@Column(name = "salt")
+	@Column(name = "salt", length = 32)
 	private String salt;
-	@Basic
-	@Column(name = "fornavn")
+	@Column(name = "fornavn", length = 40)
 	private String fornavn;
-	@Basic
-	@Column(name = "etternavn")
+	@Column(name = "etternavn", length = 40)
 	private String etternavn;
-	@Basic
-	@Column(name = "kjonn")
+	@Column(name = "kjonn", length = 8)
 	private String kjonn;
 
 	public String getMobil() {
