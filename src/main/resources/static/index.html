@@ -1,18 +1,41 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="no">
 <head>
-    <title>Your first Spring application</title>
+    <title>Landingsside</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/nett.css">
+
 </head>
 <body>
-<p><a href="/hello">Greet the world!</a></p>
-
-<form action="/hello" method="GET" id="nameForm">
-    <div>
-        <label for="nameField">How should the app call you?</label>
-        <input name="myName" id="nameField">
-        <button>Greet me!</button>
-    </div>
-</form>
+<nav class="nav">
+    <input id="menu" type="checkbox">
+    <label for="menu">Meny</label>
+    <ul class="menu">
+        <li>
+            <a href="paamelding">
+                <span>Påmelding</span>
+                <i class="fas fa-address-card" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a href="deltagerliste">
+                <span>Deltagerliste</span>
+                <i class="fas fa-tasks" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a href="paameldt">
+                <span>Påmeldt</span>
+                <i class="fas fa-users" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a href="innlogging">
+                <span>Innlogging</span>
+                <i class="fas fa-envelope-open-text" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
 </body>
 </html>
