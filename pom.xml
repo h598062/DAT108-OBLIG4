@@ -61,6 +61,11 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- må ha denne for PassordService -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
         <!--Spring boot test framework-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
