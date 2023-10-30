@@ -1,22 +1,35 @@
 package no.hvl.dat108.oblig4.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 
 @Entity
 @Table(name = "deltager", schema = "dat108_oblig4")
 public class Deltager {
 	@Id
 	@Column(name = "mobil", length = 8)
+	@Size(min = 8, max = 8, message = "Mobilnummer må være 8 siffer")
+	@NotNull(message = "Mobilnummer er obligatorisk")
+	@Pattern(regexp = "[0-9]{8}", message = "Mobilnummer må være 8 siffer")
 	private String mobil;
 	@Column(name = "hash", length = 64)
 	private String hash;
 	@Column(name = "salt", length = 32)
 	private String salt;
 	@Column(name = "fornavn", length = 40)
+	@Size(min = 2, max = 20, message = "Fornavn må være mellom 2 og 20 tegn")
+	@NotNull(message = "Fornavn er obligatorisk")
+	@Pattern(regexp = "[\\p{L} -]+", message = "Fornavn kan bare inneholde bokstaver, bindestrek og mellomrom")
 	private String fornavn;
 	@Column(name = "etternavn", length = 40)
+	@Size(min = 2, max = 20, message = "Etternavn må være mellom 2 og 20 tegn")
+	@NotNull(message = "Etternavn er obligatorisk")
+	@Pattern(regexp = "[\\p{L}-]+", message = "Etternavn kan bare inneholde bokstaver og bindestrek")
 	private String etternavn;
 	@Column(name = "kjonn", length = 8)
+	@Pattern(regexp = "mann|kvinne", message = "Kjønn må være mann eller kvinne")
+	@NotNull(message = "Kjønn er obligatorisk")
 	private String kjonn;
 
 	public String getMobil() {

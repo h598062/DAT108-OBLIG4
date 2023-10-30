@@ -27,6 +27,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--Spring validation framework-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
         <!--For å få jsp filer til å funke skikkelig-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
