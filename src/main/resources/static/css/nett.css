@@ -5,8 +5,10 @@
 :root {
     --white: #ffffff;
     --light-grey: #edf0f1;
+    --dark-grey: #212121;
     --violet: #655be1;
     --dark-violet: #5146e1;
+    --light-violet: #7d76f8;
     --black: #21232a;
 }
 
@@ -29,7 +31,7 @@ body {
     font-family: "Inter", sans-serif;
     text-align: center;
     padding: 0 20px;
-    background: var(--light-grey);
+    background: var(--dark-grey);
     color: var(--white);
 }
 
@@ -51,7 +53,7 @@ body {
     padding-bottom: 20px;
     border-radius: 5px 5px 25px 25px;
     margin: 300px auto 0;
-    background: var(--white);
+    background: var(--light-grey);
     box-shadow: rgb(50 50 93 / 10%) 0 30px 60px -12px,
     rgb(0 0 0 / 15%) 0 18px 36px -18px;
 }
@@ -126,12 +128,12 @@ body {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s;
-    color: var(--black);
+    color: var(--white);
     font-weight: bold;
 }
 
 .nav input:checked + label {
-    background: var(--black);
+    background: var(--light-violet);
     transform: translateY(calc(-50% + 4px));
 }
 
