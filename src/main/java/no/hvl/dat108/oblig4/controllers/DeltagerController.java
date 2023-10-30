@@ -17,11 +17,6 @@ public class DeltagerController {
 		return "deltagerliste";
 	}
 
-	@GetMapping("/")
-	public String rootPaamelding(Model model) {
-		return "paamelding";
-	}
-
 	@GetMapping("paamelding")
 	public String getPaamelding(Model model) {
 		return "paamelding";
@@ -35,6 +30,11 @@ public class DeltagerController {
 	@GetMapping("innlogging")
 	public String getInnlogging(Model model) {
 		return "innlogging";
+	}
+
+	@PostMapping("utlogging")
+	public String postUtlogging() {
+		return "redirect:innlogging";
 	}
 
 	@PostMapping("paamelding")
