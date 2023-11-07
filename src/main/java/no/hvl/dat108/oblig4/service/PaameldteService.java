@@ -1,6 +1,7 @@
 package no.hvl.dat108.oblig4.service;
 
 import no.hvl.dat108.oblig4.entity.Deltager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +12,17 @@ import java.util.List;
  */
 @Service
 public class PaameldteService {
+
+	private boolean first = true;
+
+	public boolean isFirst() {
+		return first;
+	}
+
+	public void setFirst(boolean first) {
+		this.first = first;
+	}
+
 	/**
 	 * Listen over påmeldte.
 	 */

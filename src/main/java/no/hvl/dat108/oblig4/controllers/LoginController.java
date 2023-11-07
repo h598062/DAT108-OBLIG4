@@ -1,6 +1,7 @@
 package no.hvl.dat108.oblig4.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import no.hvl.dat108.oblig4.entity.Deltager;
 import no.hvl.dat108.oblig4.service.PaameldteService;
 import no.hvl.dat108.oblig4.service.PassordService;
@@ -24,23 +25,37 @@ public class LoginController {
 
 	@GetMapping("login")
 	public String getLogin(Model model) {
+		// Dette må fjernes etterhvert
+		if (paameldteService.isFirst()) {
+			Deltager d = new Deltager();
+			d.setSalt(passordService.genererTilfeldigSalt());
+			d.setHash(passordService.hashMedSalt("passord", d.getSalt()));
+			d.setFornavn("Ola");
+			d.setEtternavn("Nordmann");
+			d.setMobil("12345678");
+			d.setKjonn("mann");
+			paameldteService.leggTilDeltager(d);
+			paameldteService.setFirst(false);
+		}
 		return "innlogging";
 	}
 
 	@PostMapping("login")
 	public String postLogin(
 			RedirectAttributes ra, HttpServletRequest request, @RequestParam String passord, @RequestParam String mobil) {
-
+		if (LoginUtil.erBrukerInnlogget(request.getSession())) {
+			return "redirect:deltagerliste";
+		}
 		System.out.println("mobil: " + mobil);
 		System.out.println("passord: " + passord);
-		if (LoginUtil.sjekkMobil(paameldteService.hentDeltagere(), mobil)) {
+		if (!LoginUtil.sjekkMobil(paameldteService.hentDeltagere(), mobil)) {
 			ra.addFlashAttribute("feilmelding", "Finner ikke bruker med dette mobilnummeret");
 			ra.addFlashAttribute("mobil", mobil);
 			return "redirect:login";
 		}
 		// deltager finnes
 		Deltager deltager = paameldteService.getDeltager(mobil);
-		if (passordService.erKorrektPassord(passord, deltager.getSalt(), deltager.getHash())) {
+		if (!passordService.erKorrektPassord(passord, deltager.getSalt(), deltager.getHash())) {
 			ra.addFlashAttribute("feilmelding", "Passord er feil");
 			ra.addFlashAttribute("mobil", mobil);
 			return "redirect:login";
@@ -54,7 +69,9 @@ public class LoginController {
 	}
 
 	@PostMapping("logut")
-	public String postUtlogging() {
+	public String postUtlogging(RedirectAttributes ra, HttpServletRequest request) {
+		LoginUtil.loggUtBruker(request.getSession());
+		ra.addFlashAttribute("feilmelding", "Du er nå logget ut");
 		return "redirect:login";
 	}
 }

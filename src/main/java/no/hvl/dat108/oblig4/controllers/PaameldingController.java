@@ -1,9 +1,11 @@
 package no.hvl.dat108.oblig4.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import no.hvl.dat108.oblig4.service.PaameldteService;
 import no.hvl.dat108.oblig4.service.PassordService;
 import no.hvl.dat108.oblig4.entity.Deltager;
+import no.hvl.dat108.oblig4.util.LoginUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,9 @@ public class PaameldingController {
 
 	@PostMapping("paamelding")
 	public String postPaamelding(
-			@Valid @ModelAttribute("deltager") Deltager deltager, RedirectAttributes ra, BindingResult bindingResult, @RequestParam String passord) {
+			@Valid @ModelAttribute("deltager") Deltager deltager, RedirectAttributes ra,
+			BindingResult bindingResult, @RequestParam String passord,
+			HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
 			String feilmeldinger = bindingResult.getAllErrors()
 			                                    .stream()
@@ -37,6 +41,7 @@ public class PaameldingController {
 		String hash = passordService.hashMedSalt(passord, salt);
 		deltager.setSalt(salt);
 		deltager.setHash(hash);
+		LoginUtil.loggInnBruker(request, deltager);
 		paameldteService.leggTilDeltager(deltager);
 		ra.addFlashAttribute("deltager", deltager);
 
