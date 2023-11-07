@@ -42,7 +42,7 @@
     </tr>
 </table>
 <br>
-<form action="/utlogging" method="post">
+<form action="/logut" method="post">
     <button type="submit">Logg ut</button>
 </form>
 </body>
