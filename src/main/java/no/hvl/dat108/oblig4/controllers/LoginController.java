@@ -20,6 +20,6 @@ public class LoginController {
 
 	@PostMapping("logut")
 	public String postUtlogging() {
-		return "redirect:innlogging";
+		return "redirect:login";
 	}
 }
