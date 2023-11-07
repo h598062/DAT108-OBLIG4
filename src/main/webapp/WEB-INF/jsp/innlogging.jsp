@@ -9,7 +9,7 @@
 <body>
 	<h2>Logg inn</h2>
 	<p style="color:red;">Du er logget ut</p>
-	<form method="post" action="">
+	<form method="post" action="/login">
 		<fieldset>
 			<label for="mobil">Mobil:</label> <input type="text" name="mobil" id="mobil"/>
 			<label for="passord">Passord:</label> <input type="password" name="passord" id="passord"/>
