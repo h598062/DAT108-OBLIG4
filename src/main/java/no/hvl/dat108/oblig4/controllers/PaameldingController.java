@@ -22,6 +22,11 @@ public class PaameldingController {
 	@Autowired
 	private PassordService passordService;
 
+	@GetMapping("/")
+	public String getIndex() {
+		return "redirect:paamelding";
+	}
+
 	@PostMapping("paamelding")
 	public String postPaamelding(
 			@Valid @ModelAttribute("deltager") Deltager deltager, RedirectAttributes ra,
@@ -33,8 +38,6 @@ public class PaameldingController {
 			                                    .map(e -> e.getDefaultMessage())
 			                                    .reduce("", (f, e) -> f + e + "<br>");
 			ra.addFlashAttribute("feilmeldinger", feilmeldinger);
-			ra.addFlashAttribute("feilmelding", "Feil i skjema");
-			System.out.println("asjdklasd");
 			return "redirect:paamelding";
 		}
 		String salt = passordService.genererTilfeldigSalt();

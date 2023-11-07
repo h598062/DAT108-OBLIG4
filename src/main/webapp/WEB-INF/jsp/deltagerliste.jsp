@@ -11,11 +11,19 @@
 <body>
 <table class="navbar">
     <tr>
-        <td><a href="/">Hjem</a></td>
-        <td><a href="/paamelding">Registrer ny Påmelding</a></td>
-        <td><a href="/deltagerliste">Deltagerliste</a></td>
-        <td><a href="/logut">Logg ut</a></td>
-        <td><a href="/login">Logg inn</a></td>
+        <td>
+            <form action="/paamelding" method="get">
+                <button type="submit">Registrer ny Påmelding</button>
+            </form>
+        </td>
+        <td>
+            <form action="/logut" method="post">
+                <button type="submit">Logg ut</button>
+            </form>
+        </td>
+        <td>
+            Du er logget inn som ${bruker.fornavn} ${bruker.etternavn}
+        </td>
     </tr>
 </table>
 <p>Innlogget som: ${bruker.mobil} / ${bruker.fornavn} ${bruker.etternavn}</p>

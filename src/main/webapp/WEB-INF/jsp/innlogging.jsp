@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +11,11 @@
 <body>
 <table class="navbar">
     <tr>
-        <td><a href="/">Hjem</a></td>
-        <td><a href="/paamelding">Registrer ny Påmelding</a></td>
-        <td><a href="/deltagerliste">Deltagerliste</a></td>
-        <td><a href="/logut">Logg ut</a></td>
-        <td><a href="/login">Logg inn</a></td>
+        <td>
+            <form action="/paamelding" method="get">
+                <button type="submit">Registrer ny Påmelding</button>
+            </form>
+        </td>
     </tr>
 </table>
 <h2>Logg inn</h2>
