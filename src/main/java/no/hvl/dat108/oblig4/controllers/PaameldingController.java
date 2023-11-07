@@ -2,6 +2,7 @@ package no.hvl.dat108.oblig4.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import no.hvl.dat108.oblig4.repo.DeltagerRepo;
 import no.hvl.dat108.oblig4.service.PaameldteService;
 import no.hvl.dat108.oblig4.service.PassordService;
 import no.hvl.dat108.oblig4.entity.Deltager;
@@ -22,6 +23,9 @@ public class PaameldingController {
 	@Autowired
 	private PassordService passordService;
 
+	@Autowired
+	private DeltagerRepo deltagerRepo;
+
 	@GetMapping("/")
 	public String getIndex() {
 		return "redirect:paamelding";
@@ -32,6 +36,7 @@ public class PaameldingController {
 			@Valid @ModelAttribute("deltager") Deltager deltager, RedirectAttributes ra,
 			BindingResult bindingResult, @RequestParam String passord,
 			HttpServletRequest request) {
+		ra.addFlashAttribute("deltager", deltager);
 		if (bindingResult.hasErrors()) {
 			String feilmeldinger = bindingResult.getAllErrors()
 			                                    .stream()
@@ -40,14 +45,21 @@ public class PaameldingController {
 			ra.addFlashAttribute("feilmeldinger", feilmeldinger);
 			return "redirect:paamelding";
 		}
+		if (deltagerRepo.findByMobil(deltager.getMobil()) != null) {
+			ra.addFlashAttribute("feilmeldinger", "Mobilnummeret er allerede registrert");
+			return "redirect:paamelding";
+		}
+		if (passord.length() < 5) {
+			ra.addFlashAttribute("feilmeldinger", "Passordet må være minst 5 tegn");
+			return "redirect:paamelding";
+		}
 		String salt = passordService.genererTilfeldigSalt();
 		String hash = passordService.hashMedSalt(passord, salt);
 		deltager.setSalt(salt);
 		deltager.setHash(hash);
 		LoginUtil.loggInnBruker(request, deltager);
-		paameldteService.leggTilDeltager(deltager);
-		ra.addFlashAttribute("deltager", deltager);
-
+		//paameldteService.leggTilDeltager(deltager);
+		deltagerRepo.save(deltager);
 		return "redirect:paameldt";
 	}
 

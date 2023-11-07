@@ -2,6 +2,7 @@ package no.hvl.dat108.oblig4.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import no.hvl.dat108.oblig4.entity.Deltager;
+import no.hvl.dat108.oblig4.repo.DeltagerRepo;
 import no.hvl.dat108.oblig4.service.PaameldteService;
 import no.hvl.dat108.oblig4.service.PassordService;
 import no.hvl.dat108.oblig4.util.LoginUtil;
@@ -22,10 +23,13 @@ public class LoginController {
 	@Autowired
 	private PaameldteService paameldteService;
 
+	@Autowired
+	DeltagerRepo deltagerRepo;
+
 	@GetMapping("login")
 	public String getLogin(Model model) {
-		// Dette må fjernes etterhvert
-		if (paameldteService.isFirst()) {
+		// Test bruker, dette må fjernes etterhvert
+		/*if (paameldteService.isFirst()) {
 			Deltager d = new Deltager();
 			d.setSalt(passordService.genererTilfeldigSalt());
 			d.setHash(passordService.hashMedSalt("passord", d.getSalt()));
@@ -35,7 +39,7 @@ public class LoginController {
 			d.setKjonn("mann");
 			paameldteService.leggTilDeltager(d);
 			paameldteService.setFirst(false);
-		}
+		}*/
 		return "innlogging";
 	}
 
@@ -47,13 +51,20 @@ public class LoginController {
 		}
 		System.out.println("mobil: " + mobil);
 		System.out.println("passord: " + passord);
-		if (!LoginUtil.sjekkMobil(paameldteService.hentDeltagere(), mobil)) {
+		Deltager deltager = deltagerRepo.findByMobil(mobil);
+		if (deltager == null) {
 			ra.addFlashAttribute("feilmelding", "Finner ikke bruker med dette mobilnummeret");
 			ra.addFlashAttribute("mobil", mobil);
 			return "redirect:login";
 		}
+
+		/* if (!LoginUtil.sjekkMobil(paameldteService.hentDeltagere(), mobil)) {
+			ra.addFlashAttribute("feilmelding", "Finner ikke bruker med dette mobilnummeret");
+			ra.addFlashAttribute("mobil", mobil);
+			return "redirect:login";
+		} */
 		// deltager finnes
-		Deltager deltager = paameldteService.getDeltager(mobil);
+		//Deltager deltager = paameldteService.getDeltager(mobil);
 		if (!passordService.erKorrektPassord(passord, deltager.getSalt(), deltager.getHash())) {
 			ra.addFlashAttribute("feilmelding", "Passord er feil");
 			ra.addFlashAttribute("mobil", mobil);

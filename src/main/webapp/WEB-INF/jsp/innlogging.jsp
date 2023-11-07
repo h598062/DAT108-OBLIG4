@@ -22,12 +22,12 @@
 <p style="color:red;">${feilmelding}</p>
 <form method="post" action="/login">
     <fieldset>
-        <label for="mobil">Mobil:</label> <input type="text" name="mobil" id="mobil"/>
+        <label for="mobil">Mobil:</label> <input type="text" name="mobil" id="mobil" value="${mobil}"/>
         <label for="passord">Passord:</label> <input type="password" name="passord" id="passord"/>
         <br><br>
-        <button type="submit">Logg inn</button>
+        <button id="submit-btn" type="submit">Logg inn</button>
     </fieldset>
 </form>
-
+<script src="js/validering.js" defer></script>
 </body>
 </html>

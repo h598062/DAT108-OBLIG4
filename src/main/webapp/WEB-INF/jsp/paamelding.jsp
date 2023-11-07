@@ -43,13 +43,13 @@
     <fieldset id="rot">
 
         <label>Fornavn <br>
-            <input type="text" name="fornavn" id="fornavn"/><br></label>
+            <input type="text" name="fornavn" id="fornavn" value="${deltager.fornavn}"/><br></label>
 
         <label>Etternavn<br>
-            <input type="text" name="etternavn" id="etternavn"/><br></label>
+            <input type="text" name="etternavn" id="etternavn" value="${deltager.etternavn}"/><br></label>
 
         <label>Mobil (8 siffer)<br>
-            <input type="text" name="mobil" id="mobil"/><br></label>
+            <input type="text" name="mobil" id="mobil" value="${deltager.mobil}"/><br></label>
 
         <label>Passord<br>
             <input type="password" name="passord" id="passord"/><br></label>
