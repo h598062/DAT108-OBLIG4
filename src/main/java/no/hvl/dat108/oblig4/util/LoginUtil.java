@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpSession;
 
 public class LoginUtil {
 
-	private final static int MAX_INTERACTIVE_INTERVAL = 60;
+	private static final int MAX_INTERACTIVE_INTERVAL = 60;
 
 	public static void loggUtBruker(HttpSession session) {
 		session.invalidate();
