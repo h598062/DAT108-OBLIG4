@@ -43,7 +43,7 @@ public class DeltagerController {
 
 	@PostMapping("login")
 	public String postLogin(Model model) {
-		return "redirect:delatgerliste";
+		return "redirect:deltagerliste";
 	}
 
 	@PostMapping("utlogging")
