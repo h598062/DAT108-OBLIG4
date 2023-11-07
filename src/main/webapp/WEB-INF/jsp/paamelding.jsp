@@ -8,6 +8,8 @@
 
 <body>
     <h2>Påmelding</h2>
+    <p style="color:red;">${feilmelding}</p>
+    <p style="color:red;">${feilmeldinger}</p>
     <form action="/paamelding" method="post" >
         <fieldset id="rot">
 
