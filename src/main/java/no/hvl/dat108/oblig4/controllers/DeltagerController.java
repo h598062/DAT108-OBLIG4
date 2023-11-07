@@ -1,19 +1,26 @@
 package no.hvl.dat108.oblig4.controllers;
 
+import jakarta.validation.Valid;
+import no.hvl.dat108.oblig4.PaameldteService;
+import no.hvl.dat108.oblig4.entity.Deltager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class DeltagerController {
 
+	@Autowired
+	private PaameldteService paameldteService;
+
 	@GetMapping("deltagerliste")
 	public String getDeltagerListe(Model model) {
+		model.addAttribute("deltagere", paameldteService.hentDeltagere());
 		return "deltagerliste";
 	}
 
@@ -38,16 +45,21 @@ public class DeltagerController {
 	}
 
 	@PostMapping("paamelding")
-	public String submitPaamelding(Model model, @RequestParam(value = "fornavn") String fornavn,
-	                               @RequestParam(value = "etternavn") String etternavn,
-	                               @RequestParam(value = "mobil") String mobil,
-	                               @RequestParam(value = "passord") String passord,
-	                               @RequestParam(value = "passordRepetert") String passordRepetert,
-	                               @RequestParam(value = "kjonn") String kjonn) {
-		System.out.printf("%s %s %s %s %s %s%n",fornavn, etternavn, mobil, passord, passordRepetert, kjonn);
-		Map<String, String> map = Map.of("fornavn", fornavn, "etternavn", etternavn, "mobil", mobil,
-				"kjonn", kjonn);
-		model.addAttribute("p", map);
-		return "paameldt";
+	public String submitPaamelding(
+			@Valid @ModelAttribute("deltager") Deltager deltager, RedirectAttributes ra, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			String feilmeldinger = bindingResult.getAllErrors()
+			                                    .stream()
+			                                    .map(e -> e.getDefaultMessage())
+			                                    .reduce("", (f, e) -> f + e + "<br>");
+			ra.addFlashAttribute("feilmeldinger", feilmeldinger);
+			ra.addFlashAttribute("feilmelding", "Feil i skjema");
+			System.out.println("asjdklasd");
+			return "redirect:/";
+		}
+		paameldteService.leggTilDeltager(deltager);
+		ra.addFlashAttribute("deltager", deltager);
+
+		return "redirect:paameldt";
 	}
 }
