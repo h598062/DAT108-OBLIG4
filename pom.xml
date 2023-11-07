@@ -43,6 +43,10 @@
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        </dependency>
         <!--Gir noe bra integrasjon i IntelliJ for endpoints etc.-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
