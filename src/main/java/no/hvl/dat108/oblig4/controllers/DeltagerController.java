@@ -1,7 +1,7 @@
 package no.hvl.dat108.oblig4.controllers;
 
-import no.hvl.dat108.oblig4.PaameldteService;
-import no.hvl.dat108.oblig4.PassordService;
+import no.hvl.dat108.oblig4.service.PaameldteService;
+import no.hvl.dat108.oblig4.service.PassordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

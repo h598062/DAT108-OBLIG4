@@ -1,4 +1,4 @@
-package no.hvl.dat108.oblig4;
+package no.hvl.dat108.oblig4.service;
 
 import java.util.ArrayList;
 import java.util.List;
