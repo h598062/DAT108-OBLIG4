@@ -8,8 +8,7 @@
 
 <body>
     <h2>Påmelding</h2>
-    <p style="color:red;">Påmeldingsdetaljer er ugyldige</p>
-    <form action="paamelding" method="post" >
+    <form action="/paamelding" method="post" >
         <fieldset id="rot">
 
             <label>Fornavn <br>

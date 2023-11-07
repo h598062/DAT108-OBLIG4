@@ -13,7 +13,17 @@
 
 <p> ${deltager.fornavn} ${deltager.etternavn} <br>
     ${deltager.mobil} <br>
-    ${deltager.kjonn}
+    <c:choose>
+        <c:when test="${deltager.kjonn eq 'mann'}">
+            Mann
+        </c:when>
+        <c:when test="${deltager.kjonn eq 'kvinne'}">
+            Kvinne
+        </c:when>
+        <c:otherwise>
+            Annet
+        </c:otherwise>
+    </c:choose>
 </p>
 
 <a href="/deltagerliste">Gå til deltagerlisten</a>

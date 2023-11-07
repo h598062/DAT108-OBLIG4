@@ -18,20 +18,31 @@
     </tr>
     <c:forEach var="deltager" items="${deltagere}">
         <tr style="">
-            <td align="center">&#9792;</td>
+            <c:choose>
+                <c:when test="${deltager.kjonn eq 'mann'}">
+                    <td align="center">&#9794;</td>
+                </c:when>
+                <c:when test="${deltager.kjonn eq 'kvinne'}">
+                    <td align="center">&#9792;</td>
+                </c:when>
+                <c:otherwise>
+                    <td align="center">x</td>
+                </c:otherwise>
+            </c:choose>
+
             <td>${deltager.fornavn} ${deltager.etternavn}</td>
             <td>${deltager.mobil}</td>
         </tr>
     </c:forEach>
     <%--  Beholder denne for referanse, fjernes når innlogging er fungerende  --%>
-    <tr style="background-color:#aaffaa">
+    <tr style="background-color:#418941">
         <td align="center">&#9794;</td>
         <td>Arne Arnesen</td>
         <td>901 23 456</td>
     </tr>
 </table>
 <br>
-<form action="utlogging" method="post">
+<form action="/utlogging" method="post">
     <button type="submit">Logg ut</button>
 </form>
 </body>
