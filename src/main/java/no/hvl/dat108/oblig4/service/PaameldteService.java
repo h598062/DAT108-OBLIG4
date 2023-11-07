@@ -1,22 +1,54 @@
 package no.hvl.dat108.oblig4.service;
 
+import no.hvl.dat108.oblig4.entity.Deltager;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-import no.hvl.dat108.oblig4.entity.Deltager;
-
+/**
+ * En service som holder styr på påmeldte.
+ */
 @Service
 public class PaameldteService {
+	/**
+	 * Listen over påmeldte.
+	 */
 	private final List<Deltager> paameldte = new ArrayList<>();
 
+	/**
+	 * Legger til en deltager i listen over påmeldte.
+	 *
+	 * @param deltager Deltageren som skal legges til
+	 */
 	public void leggTilDeltager(Deltager deltager) {
 		paameldte.add(deltager);
 	}
 
+	/**
+	 * Henter listen over påmeldte.
+	 *
+	 * @return listen over påmeldte
+	 */
 	public List<Deltager> hentDeltagere() {
 		return paameldte;
+	}
+
+	/**
+	 * Sjekker om en deltager med gitt mobilnummer finnes i listen over påmeldte.
+	 *
+	 * @param mobil Mobilnummeret til deltageren som skal sjekkes
+	 *
+	 * @return Deltager om den finnes, ellers null
+	 */
+	public Deltager getDeltager(String mobil) {
+		for (Deltager d : paameldte) {
+			if (d.getMobil()
+			     .equals(mobil)) {
+				return d;
+			}
+		}
+		return null;
 	}
 
 }

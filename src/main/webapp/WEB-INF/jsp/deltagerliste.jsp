@@ -8,7 +8,7 @@
     <title>Deltagerliste</title>
 </head>
 <body>
-<p>Innlogget som: 90123456 / Arne Arnesen</p>
+<p>Innlogget som: ${bruker.mobil} / ${bruker.fornavn} ${bruker.etternavn}</p>
 <h2>Deltagerliste</h2>
 <table>
     <tr>
