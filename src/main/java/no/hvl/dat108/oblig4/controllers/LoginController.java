@@ -1,7 +1,6 @@
 package no.hvl.dat108.oblig4.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import no.hvl.dat108.oblig4.entity.Deltager;
 import no.hvl.dat108.oblig4.service.PaameldteService;
 import no.hvl.dat108.oblig4.service.PassordService;

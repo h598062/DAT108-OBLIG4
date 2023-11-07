@@ -1,7 +1,6 @@
 package no.hvl.dat108.oblig4.service;
 
 import no.hvl.dat108.oblig4.entity.Deltager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
