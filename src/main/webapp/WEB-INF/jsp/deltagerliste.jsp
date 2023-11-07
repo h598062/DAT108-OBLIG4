@@ -5,9 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/simple.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <title>Deltagerliste</title>
 </head>
 <body>
+<table class="navbar">
+    <tr>
+        <td><a href="/">Hjem</a></td>
+        <td><a href="/paamelding">Registrer ny Påmelding</a></td>
+        <td><a href="/deltagerliste">Deltagerliste</a></td>
+        <td><a href="/logut">Logg ut</a></td>
+        <td><a href="/login">Logg inn</a></td>
+    </tr>
+</table>
 <p>Innlogget som: ${bruker.mobil} / ${bruker.fornavn} ${bruker.etternavn}</p>
 <h2>Deltagerliste</h2>
 <table>
@@ -17,7 +27,7 @@
         <th align="left">Mobil</th>
     </tr>
     <c:forEach var="deltager" items="${deltagere}">
-        <tr style="">
+        <tr style=<c:if test="${deltager.mobil eq bruker.mobil}">"background-color:#418941"</c:if>>
             <c:choose>
                 <c:when test="${deltager.kjonn eq 'mann'}">
                     <td align="center">&#9794;</td>
@@ -34,12 +44,6 @@
             <td>${deltager.mobil}</td>
         </tr>
     </c:forEach>
-    <%--  Beholder denne for referanse, fjernes når innlogging er fungerende  --%>
-    <tr style="background-color:#418941">
-        <td align="center">&#9794;</td>
-        <td>Arne Arnesen</td>
-        <td>901 23 456</td>
-    </tr>
 </table>
 <br>
 <form action="/logut" method="post">

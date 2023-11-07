@@ -1,0 +1,42 @@
+/* Apply styles to the .navbar table */
+.navbar {
+    width: 100%; /* Make the table span the full width of its container */
+    background-color: #333; /* Background color for the navbar */
+    color: #fff; /* Text color for the navbar */
+    border-collapse: collapse; /* Remove cell spacing and borders */
+
+    /* Add a subtle shadow to the navbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Set a fixed height for the navbar */
+    height: 50px;
+}
+
+/* Apply styles to table cells within the .navbar table */
+.navbar td {
+    padding: 10px 15px; /* Add padding to the cells for spacing */
+    text-align: center; /* Center-align the text within the cells */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Style the navigation links */
+.navbar a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Text color for links */
+}
+
+/* Add a hover effect for navigation links */
+.navbar a:hover {
+    background-color: #555; /* Darken the cell on hover */
+    border-radius: 5px; /* Add rounded corners on hover */
+}
+
+/* Style the active (current) page link */
+.navbar .active {
+    background-color: #4CAF50; /* Background color for the active page */
+}
+
+/* Add a transition effect for smooth hover animations */
+.navbar td, .navbar a {
+    transition: background-color 0.3s, border-radius 0.3s;
+}

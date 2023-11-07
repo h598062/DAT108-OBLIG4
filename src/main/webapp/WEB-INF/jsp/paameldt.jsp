@@ -5,9 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/simple.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <title>Påmeldingsbekreftelse</title>
 </head>
 <body>
+<table class="navbar">
+    <tr>
+        <td><a href="/">Hjem</a></td>
+        <td><a href="/paamelding">Registrer ny Påmelding</a></td>
+        <td><a href="/deltagerliste">Deltagerliste</a></td>
+        <td><a href="/logut">Logg ut</a></td>
+        <td><a href="/login">Logg inn</a></td>
+    </tr>
+</table>
 <h2>Påmeldingsbekreftelse</h2>
 <p>Påmeldingen er mottatt for</p>
 
