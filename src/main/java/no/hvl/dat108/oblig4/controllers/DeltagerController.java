@@ -55,7 +55,7 @@ public class DeltagerController {
 			ra.addFlashAttribute("feilmeldinger", feilmeldinger);
 			ra.addFlashAttribute("feilmelding", "Feil i skjema");
 			System.out.println("asjdklasd");
-			return "redirect:/";
+			return "redirect:paamelding";
 		}
 		paameldteService.leggTilDeltager(deltager);
 		ra.addFlashAttribute("deltager", deltager);
