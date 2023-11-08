@@ -1,32 +1,29 @@
-/* Apply styles to the .navbar table */
 .navbar {
-    width: 100%; /* Make the table span the full width of its container */
-    background-color: #333; /* Background color for the navbar */
-    color: #fff; /* Text color for the navbar */
-    border-collapse: collapse; /* Remove cell spacing and borders */
+    display: flex;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    border-collapse: collapse;
 
-    /* Add a subtle shadow to the navbar */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-    /* Set a fixed height for the navbar */
-    height: 80px;
-    margin-bottom: 0;
+    margin-top: 10px;
 }
 
-/* Apply styles to table cells within the .navbar table */
-.navbar td {
-    width: fit-content(100%);
-    /*padding: 10px 15px;  Add padding to the cells for spacing */
-    text-align: center; /* Center-align the text within the cells */
-    font-weight: bold; /* Make the text bold */
+.navbar div {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 0.5rem;
+    vertical-align: center;
+    padding: 0;
 }
 
-/* Style the active (current) page link */
-.navbar .active {
-    background-color: #4CAF50; /* Background color for the active page */
+.navbar p {
+    margin: 0;
+    padding-top: 0.2rem;
 }
 
-/* Add a transition effect for smooth hover animations */
-.navbar td {
-    transition: background-color 0.3s, border-radius 0.3s;
+.navbar button {
+    margin: 0;
 }

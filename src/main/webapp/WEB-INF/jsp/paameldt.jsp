@@ -9,24 +9,23 @@
     <title>Påmeldingsbekreftelse</title>
 </head>
 <body>
-<table class="navbar">
-    <tr>
-        <td>
-            <form action="/paamelding" method="get">
-                <button type="submit">Registrer ny Påmelding</button>
-            </form>
-        </td>
-        <td>
-            <form action="/logut" method="post">
-                <button type="submit">Logg ut</button>
-            </form>
-        </td>
-        <td>
-            Du er logget inn som ${bruker.fornavn} ${bruker.etternavn}
-        </td>
-    </tr>
-</table>
+<fieldset class="navbar">
+    <div>
+        <form action="/paamelding" method="get">
+            <button type="submit">Registrer ny Påmelding</button>
+        </form>
+    </div>
+    <div>
+        <form action="/logut" method="post">
+            <button type="submit">Logg ut</button>
+        </form>
+    </div>
+    <div>
+        <p>Innlogget som ${bruker.fornavn} ${bruker.etternavn}</p>
+    </div>
+</fieldset>
 <h2>Påmeldingsbekreftelse</h2>
+<fieldset>
 <p>Påmeldingen er mottatt for</p>
 
 <p> ${deltager.fornavn} ${deltager.etternavn} <br>
@@ -45,5 +44,6 @@
 </p>
 
 <a href="/deltagerliste">Gå til deltagerlisten</a>
+</fieldset>
 </body>
 </html>
