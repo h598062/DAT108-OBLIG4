@@ -28,8 +28,8 @@ public class LoginController {
 
 	@GetMapping("login")
 	public String getLogin(Model model) {
-		// Test bruker, dette må fjernes etterhvert
-		/*if (paameldteService.isFirst()) {
+		/* Test bruker for liste implementajson
+		if (paameldteService.isFirst()) {
 			Deltager d = new Deltager();
 			d.setSalt(passordService.genererTilfeldigSalt());
 			d.setHash(passordService.hashMedSalt("passord", d.getSalt()));
@@ -39,7 +39,8 @@ public class LoginController {
 			d.setKjonn("mann");
 			paameldteService.leggTilDeltager(d);
 			paameldteService.setFirst(false);
-		}*/
+		}
+		*/
 		return "innlogging";
 	}
 
@@ -49,8 +50,6 @@ public class LoginController {
 		if (LoginUtil.erBrukerInnlogget(request.getSession())) {
 			return "redirect:deltagerliste";
 		}
-		System.out.println("mobil: " + mobil);
-		System.out.println("passord: " + passord);
 		Deltager deltager = deltagerRepo.findByMobil(mobil);
 		if (deltager == null) {
 			ra.addFlashAttribute("feilmelding", "Finner ikke bruker med dette mobilnummeret");
@@ -58,13 +57,15 @@ public class LoginController {
 			return "redirect:login";
 		}
 
-		/* if (!LoginUtil.sjekkMobil(paameldteService.hentDeltagere(), mobil)) {
+		/* Gammel liste implementasjon
+		if (!LoginUtil.sjekkMobil(paameldteService.hentDeltagere(), mobil)) {
 			ra.addFlashAttribute("feilmelding", "Finner ikke bruker med dette mobilnummeret");
 			ra.addFlashAttribute("mobil", mobil);
 			return "redirect:login";
-		} */
+		}
+		Deltager deltager = paameldteService.getDeltager(mobil);
+		*/
 		// deltager finnes
-		//Deltager deltager = paameldteService.getDeltager(mobil);
 		if (!passordService.erKorrektPassord(passord, deltager.getSalt(), deltager.getHash())) {
 			ra.addFlashAttribute("feilmelding", "Passord er feil");
 			ra.addFlashAttribute("mobil", mobil);
