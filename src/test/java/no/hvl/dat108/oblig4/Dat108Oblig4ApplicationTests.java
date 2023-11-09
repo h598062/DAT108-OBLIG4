@@ -76,4 +76,21 @@ class Dat108Oblig4ApplicationTests {
 		String hash = ps.hashMedSalt(passord, salt);
 		assertTrue(ps.erKorrektPassord(passord, salt, hash));
 	}
+
+	@Test
+	void testTidligereGenerertPassord() {
+		String hash = "BC248D74DC5283A9EA7D67B750F809F2E474862DC298AD240E302B7C1331F34B";
+		String salt = "3807EE1D3A686291FCCFEEA1BCCB8351";
+		String passord = "superbestepassord123medæøå";
+		assertTrue(ps.erKorrektPassord(passord, salt, hash));
+	}
+
+	@Test
+	void testLagHashMedSammeSalt () {
+		String hash = "BC248D74DC5283A9EA7D67B750F809F2E474862DC298AD240E302B7C1331F34B";
+		String salt = "3807EE1D3A686291FCCFEEA1BCCB8351";
+		String passord = "superbestepassord123medæøå";
+		String hash2 = ps.hashMedSalt(passord, salt);
+		assertEquals(hash, hash2);
+	}
 }
