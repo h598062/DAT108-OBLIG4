@@ -4,6 +4,7 @@ import no.hvl.dat108.oblig4.controllers.DeltagerController;
 import no.hvl.dat108.oblig4.controllers.LoginController;
 import no.hvl.dat108.oblig4.controllers.PaameldingController;
 import no.hvl.dat108.oblig4.entity.Deltager;
+import no.hvl.dat108.oblig4.service.PaameldteService;
 import no.hvl.dat108.oblig4.service.PassordService;
 import no.hvl.dat108.oblig4.util.LoginUtil;
 import org.junit.jupiter.api.Test;
@@ -27,15 +28,22 @@ class Dat108Oblig4ApplicationTests {
 	@Autowired
 	DeltagerController dc = new DeltagerController();
 
+	@Autowired
+	PassordService ps = new PassordService();
 
-	// denne tester om spring boot applikasjon klarer å starte
+	@Autowired
+	PaameldteService pss = new PaameldteService();
+
+
+	// denne tester om spring boot applikasjon klarer å starte, og sjekker at autowired fungerer
 	@Test
 	void contextLoads() {
 		assertNotNull(lc);
 		assertNotNull(pc);
 		assertNotNull(dc);
+		assertNotNull(ps);
+		assertNotNull(pss);
 	}
-
 
 	@Test
 	void sjekkMobilTrue() {
@@ -63,10 +71,9 @@ class Dat108Oblig4ApplicationTests {
 
 	@Test
 	void testPassordService() {
-		PassordService p = new PassordService();
-		String salt = p.genererTilfeldigSalt();
+		String salt = ps.genererTilfeldigSalt();
 		String passord = "passord";
-		String hash = p.hashMedSalt(passord, salt);
-		assertTrue(p.erKorrektPassord(passord, salt, hash));
+		String hash = ps.hashMedSalt(passord, salt);
+		assertTrue(ps.erKorrektPassord(passord, salt, hash));
 	}
 }
