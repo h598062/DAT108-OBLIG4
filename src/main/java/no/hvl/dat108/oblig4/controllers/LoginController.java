@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 public class LoginController {
 
@@ -50,12 +52,14 @@ public class LoginController {
 		if (LoginUtil.erBrukerInnlogget(request.getSession())) {
 			return "redirect:deltagerliste";
 		}
-		Deltager deltager = deltagerRepo.findByMobil(mobil);
-		if (deltager == null) {
+		Optional<Deltager> deltagerOptional = deltagerRepo.findById(mobil);
+		if (deltagerOptional.isEmpty()) {
 			ra.addFlashAttribute("feilmelding", "Finner ikke bruker med dette mobilnummeret");
 			ra.addFlashAttribute("mobil", mobil);
 			return "redirect:login";
 		}
+
+		Deltager deltager = deltagerOptional.get();
 
 		/* Gammel liste implementasjon
 		if (!LoginUtil.sjekkMobil(paameldteService.hentDeltagere(), mobil)) {

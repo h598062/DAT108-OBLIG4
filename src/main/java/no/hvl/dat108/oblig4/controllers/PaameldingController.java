@@ -45,7 +45,7 @@ public class PaameldingController {
 			ra.addFlashAttribute("feilmeldinger", feilmeldinger);
 			return "redirect:paamelding";
 		}
-		if (deltagerRepo.findByMobil(deltager.getMobil()) != null) {
+		if (deltagerRepo.findById(deltager.getMobil()).isPresent()) {
 			ra.addFlashAttribute("feilmeldinger", "Mobilnummeret er allerede registrert");
 			return "redirect:paamelding";
 		}
