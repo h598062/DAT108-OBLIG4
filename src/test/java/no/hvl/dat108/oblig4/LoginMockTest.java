@@ -50,8 +50,6 @@ class LoginMockTest {
 
 	@Test
 	void testLoginMedFeilMobil() {
-		String mobil = "12345678";
-		String passord = "superbestepassord123medæøå";
 
 		when(mockedDeltagerRepo.findById(mobil)).thenReturn(Optional.empty());
 
