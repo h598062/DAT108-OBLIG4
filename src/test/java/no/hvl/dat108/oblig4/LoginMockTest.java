@@ -60,7 +60,7 @@ class LoginMockTest {
 		String redirect = loginController.postLogin(ra, new MockHttpServletRequest(), passord, mobil);
 
 		assertEquals(
-				"Finner ikke bruker med dette mobilnummeret",
+				"Ugyldig brukernavn og/eller passord",
 				ra.getFlashAttributes()
 				  .get("feilmelding"));
 		assertEquals("redirect:login", redirect);
@@ -77,7 +77,7 @@ class LoginMockTest {
 		String redirect = loginController.postLogin(ra, new MockHttpServletRequest(), passord, mobil);
 
 		assertEquals(
-				"Passord er feil",
+				"Ugyldig brukernavn og/eller passord",
 				ra.getFlashAttributes()
 				  .get("feilmelding"));
 		assertEquals("redirect:login", redirect);

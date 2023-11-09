@@ -54,7 +54,7 @@ public class LoginController {
 		}
 		Optional<Deltager> deltagerOptional = deltagerRepo.findById(mobil);
 		if (deltagerOptional.isEmpty()) {
-			ra.addFlashAttribute("feilmelding", "Finner ikke bruker med dette mobilnummeret");
+			ra.addFlashAttribute("feilmelding", "Ugyldig brukernavn og/eller passord");
 			ra.addFlashAttribute("mobil", mobil);
 			return "redirect:login";
 		}
@@ -71,7 +71,7 @@ public class LoginController {
 		*/
 		// deltager finnes
 		if (!passordService.erKorrektPassord(passord, deltager.getSalt(), deltager.getHash())) {
-			ra.addFlashAttribute("feilmelding", "Passord er feil");
+			ra.addFlashAttribute("feilmelding", "Ugyldig brukernavn og/eller passord");
 			ra.addFlashAttribute("mobil", mobil);
 			return "redirect:login";
 		}
